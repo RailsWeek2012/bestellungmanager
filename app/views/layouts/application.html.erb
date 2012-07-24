@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Bestellungmanager</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<div id="container">
+  <div id="header">
+    <% if flash[:alert] %>
+        <p id="alert">
+          <%= flash[:alert] %>
+        </p>
+    <% end %>
+
+  </div>
+    <div id="content">
+     <%= yield %>
+    </div>
+  <div id="footer">
+    &copy 2012 |
+    <% if user_signed_in? %>
+        <%= link_to "logout", logout_path, method: :delete ,:class => "btn btn-small btn-danger"%>  |
+        <td><%= link_to 'Show', current_user,:class => "btn btn-show btn-info" %></td>  |
+  <% else %>
+        <%= link_to "new user", new_user_path, :class => "btn btn-large "%>
+    <% end %>
+    <% if admin_sign_in? %>
+    <td><%= link_to "User_index", users_path,:class => "btn btn-small btn-info"%></td> |
+     <td><%= link_to 'Artikel', artikels_path,:class => "btn btn-show btn-info" %></td>
+    <% end %>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<h1>Listing users</h1>
+
+<table class="table table-striped tablebordered table-condensed">
+  <tr>
+    <th>User_id</th>
+    <th>name</th>
+    <th>Vorname</th>
+    <th>Email</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @users.each do |user| %>
+  <tr>
+    <td><%= user.id %></td>
+    <td><%= user.name %></td>
+    <td><%= user.vorname %></td>
+    <td><%= user.email %></td>
+    <td><%= link_to 'Show', user ,:class => "btn btn-mini btn-info"%></td>
+    <td><%= link_to 'Edit', edit_user_path(user),:class => "btn btn-mini " %></td>
+    <td><%= link_to 'Profil Löschen',user, method: :delete, data: { confirm: 'Are you sure?' },
+                :class => "btn btn-small btn-danger" %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New User', new_user_path,:class => "btn btn-mini btn-info" %>

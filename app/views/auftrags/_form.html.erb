@@ -1,0 +1,22 @@
+<%= form_for(@auftrag) do |f| %>
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :speise %><br />
+    <%= f.text_field :speise %>
+  </div>
+  <div class="field">
+    <%= f.label :preis %><br />
+    <%= f.number_field :preis %>
+  </div>
+  <div class="field">
+    <%= f.label :comment %><br />
+    <%= f.text_area :comment %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

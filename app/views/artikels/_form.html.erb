@@ -1,0 +1,19 @@
+<%= form_for @artikel, :html => { :multipart => true} do |f| %>
+
+  <div class="field">
+    <%= f.label "Restaurant Name" %><br />
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label :comment %><br />
+    <%= f.text_area :comment %>
+  </div>
+   <div class ="field">
+    <h1> <%= f.label "Hier Speisekarte hochladen" %></h1>
+     <%= f.file_field 'image' %>
+
+   </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

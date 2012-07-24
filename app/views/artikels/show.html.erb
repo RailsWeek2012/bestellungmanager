@@ -1,0 +1,43 @@
+
+
+<p>
+  <b>Restaurant:</b>
+  <%= @artikel.title %>
+</p>
+<p>
+  <h2>Speisekarte</h2>
+  <%=image_tag  @artikel.image.to_s ,:size => "550x500" %>
+  <%= link_to "Herunterladen",laden_artikel_path,:class => "btn btn-small btn-info"  %>
+
+</p>
+<p>
+  <b>Comment:</b>
+  <%= @artikel.comment %>
+</p>
+<td><%= link_to 'Back',artikels_path,:class => "btn btn-small btn-primary" %> </td>
+
+<%  if can? :edit, @artikel %>
+<%= link_to 'Edit', edit_artikel_path(@artikel),:class => "btn btn-small" %>
+    <% end %>
+<div>
+  <h2>Bitte hier bestellen!!</h2>
+  <%= link_to "Bestellung Aufnehmen", bestellungs_path ,:class => "btn btn-small btn-success" %>
+
+</div>
+<div>
+  <h2>Die Aktuelle Bestellungs</h2>
+  <table class="table table-striped tablebordered table-condensed  ">
+    <tbody>
+    <tr>
+      <th>Title</th>
+      <th>Termin</th>
+    </tr>
+
+    <% @artikel.bestellungs.each do |bestellung| %>
+
+          <td><%= bestellung.title %></td>
+          <td><%= bestellung.termin %></td>
+        <% end %>
+   </table>
+</div>
+

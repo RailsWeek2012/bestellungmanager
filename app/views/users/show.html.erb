@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>name:</b>
+  <%= @user.name %>
+</p>
+
+<p>
+  <b>Vorname:</b>
+  <%= @user.vorname %>
+</p>
+
+<p>
+  <b>Email:</b>
+  <%= @user.email %>
+</p>
+
+<%= link_to 'Back', artikels_path,:class => "btn btn-small, btn-info" %>
+<%= link_to "Edit", edit_user_path(@user.id),:class => "btn btn-small" %>
+

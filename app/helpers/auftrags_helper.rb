@@ -1,0 +1,2 @@
+module AuftragsHelper
+end

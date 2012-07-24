@@ -1,0 +1,46 @@
+<p>
+  <b>Title:</b>
+  <%= @bestellung.title %>
+</p>
+
+<p>
+  <b>Details:</b>
+  <%= @bestellung.details %>
+</p>
+
+<p>
+  <b>Termin:</b>
+  <%= @bestellung.termin %>
+</p>
+ <p>
+   <b>Summe:</b>
+   <%= @bestellung.auftrags .sum("preis")%>
+
+ </p>
+<div>
+  <table  class="table table-striped tablebordered table-condensed  ">
+    <tr>
+      <th>Name</th>
+      <th>Speise</th>
+      <th>Preis</th>
+      <th>Comment</th>
+    </tr>
+
+    <%@bestellung.auftrags.each do |auftrag| %>
+        <tr>
+          <td><%= auftrag.name %></td>
+          <td><%= auftrag.speise %></td>
+          <td><%= auftrag.preis %></td>
+          <td><%= auftrag.comment %></td>
+        </tr>
+        <% end %>
+     </table>
+</div>
+<td><%= link_to 'Back', bestellungs_path,:class => "btn btn-small" %></td>
+
+<%= link_to "Bestellung Ausdruecke(PDF)" , bestellung_path(@bestellung, :format => 'pdf') ,:class => "btn btn-small btn-success"%>
+
+<div>
+    <h2>Bitte Speise Hier eingeben!!</h2>
+    <%= link_to "Speise Aufnehmen", auftrags_path,:class => "btn btn-small btn-action" %>
+</div>

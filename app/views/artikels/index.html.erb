@@ -1,0 +1,38 @@
+<% if flash[:alert] %>
+    <p id="alert">
+      <%= flash[:alert] %>
+    </p>
+<% end %>
+
+<h1>Speisekarte</h1>
+
+<table class="table table-striped tablebordered table-condensed  ">
+  <thead>
+  </thead>
+  <tbody>
+  <tr>
+    <th>Restaurant</th>
+   <!-- <th>Comment</th>-->
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @artikels.each do |artikel| %>
+  <tr>
+    <td><%= artikel.title %></td>
+    <td><%= link_to 'Show', artikel,:class => "btn btn-mini btn-info" %></td>
+    <%  if can? :edit, artikel %>
+    <td><%= link_to 'Edit', edit_artikel_path(artikel.id),:class => "btn btn-mini" %></td>
+    <td><%= link_to 'Destroy', artikel, method: :delete, data: { confirm: 'Are you sure?' },
+                    :class => "btn btn-mini btn-danger" %></td>
+     <% end %>
+  </tr>
+<% end %>
+</tbody>
+</table>
+
+<br />
+
+<%= link_to 'Neue Speisekarte erstellen', new_artikel_path,:class => "btn btn-mini btn-info" %>
+
