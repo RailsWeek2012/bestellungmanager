@@ -18,9 +18,6 @@ pdf.move_down(30)
        :cell_style => {:size => 15, :font_style=> :italic}
 
 
-
-
-
       pdf.move_down(10)
 
         pdf.text "Summe #{@bestellung.auftrags.sum("preis")}", :size => 16, :style => :bold

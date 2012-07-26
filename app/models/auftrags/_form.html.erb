@@ -1,12 +1,3 @@
-
-<div id="header">
-  <% if flash[:alert] %>
-      <p id="alert">
-        <%= flash[:alert] %>
-      </p>
-  <% end %>
-
-</div>
 <%= form_for(@auftrag) do |f| %>
   <div class="field">
     <%= f.label :name %><br />

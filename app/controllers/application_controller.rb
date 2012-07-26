@@ -6,7 +6,10 @@ class ApplicationController < ActionController::Base
     redirect_to root_path
   end
 
+  rescue_from  ActiveRecord::RecordNotFound do |exception|
 
+
+  end
   def current_user
     if session[:user_id]
       @current_user ||= User.find(session[:user_id])
@@ -14,12 +17,12 @@ class ApplicationController < ActionController::Base
     end
   end
 
-   def current_artikel
-     if session[:artikel_id]
-       @current_artikel ||= Artikel.find(session[:artikel_id])
-     end
+  def current_artikel
+    if session[:artikel_id]
+      @current_artikel ||= Artikel.find(session[:artikel_id])
+    end
 
-   end
+  end
 
   def current_bestellung
     if session[:bestellung_id]
@@ -41,33 +44,32 @@ class ApplicationController < ActionController::Base
 
   def require_login!
     unless user_signed_in?
-      redirect_to login_path,
+      redirect_to root_path,
                   alert: "Bitte melden Sie sich zuerst an.!!"
     end
   end
 
   def require_artikel!
     unless artikel_signed_in?
-      redirect_to artikel_path,
+      redirect_to root_path,
                   alert: "Bitte zuerst eine Speise Karte  waehlen!!"
     end
   end
 
   def require_bestellung!
     unless  sign_bestellung_in?
-      redirect_to artikel_path,
+      redirect_to artikels_path,
                   alert: "Bitte zuerst eine Bestellung waehlen!!"
     end
   end
 
   def admin_sign_in?
     if(user_signed_in?)
-    current_user.admin?
-     end
-   end
+      current_user.admin?
+    end
+  end
 
-
-   helper_method :admin_sign_in?
+  helper_method :admin_sign_in?
   helper_method :require_login!
   helper_method :require_artikel!
   helper_method :require_bestellung!

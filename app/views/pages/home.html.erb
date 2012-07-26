@@ -1,8 +1,13 @@
 
 <h1>Bestellung  Manager</h1>
+
 <% if user_signed_in? %>
-    <p><%= link_to "Speisekarte", artikels_path, :class => "btn btn-small btn-info" %></p>
+     <td><%= link_to "Logout", signout_path,:class => "btn btn-large" %></td>
+    <td><%= link_to "Speisekarte", artikels_path, :class => "btn btn-large btn-info" %></td>
+
 <% else %>
-    <p><%= link_to "Einloggen", login_path, :class => "btn btn-small " %></p>
+
+    <p><%= link_to "Einloggen", "/auth/cas", :class => "btn btn-small " %></p>
 <% end %>
+
 

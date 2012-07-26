@@ -1,30 +1,52 @@
 <h1>Listing users</h1>
 
-<table class="table table-striped tablebordered table-condensed">
+<table class="table table-striped table-bordered table-condensed">
   <tr>
+    <% if admin_sign_in? %>
     <th>User_id</th>
+     <% end %>
+
     <th>name</th>
-    <th>Vorname</th>
+    <th>voname</th>
     <th>Email</th>
-    <th></th>
-    <th></th>
-    <th></th>
+
+    <% if admin_sign_in? %>
+    <th>uid</th>
+    <th>Provider</th>
+     <% end %>
+
   </tr>
 
 <% @users.each do |user| %>
   <tr>
+    <% if admin_sign_in? %>
     <td><%= user.id %></td>
+        <% end %>
+
+    <%if user.email.present? && !admin_sign_in? %>
     <td><%= user.name %></td>
-    <td><%= user.vorname %></td>
+    <td><%=user.vorname %></td>
     <td><%= user.email %></td>
+        <% end %>
+
+    <% if  admin_sign_in?%>
+    <td><%= if  user.authorization.present? ; user.authorization.uid end %></td>
+    <td><%= if  user.authorization.present? ; user.authorization.provider end %></td>
+        <% end %>
+
+    <% if can? :edit, user %>
     <td><%= link_to 'Show', user ,:class => "btn btn-mini btn-info"%></td>
+        <% end %>
+
+    <% if admin_sign_in? %>
     <td><%= link_to 'Edit', edit_user_path(user),:class => "btn btn-mini " %></td>
-    <td><%= link_to 'Profil Löschen',user, method: :delete, data: { confirm: 'Are you sure?' },
-                :class => "btn btn-small btn-danger" %></td>
+    <td><%= link_to 'Loeschen',user, method: :delete, data: { confirm: 'Are you sure?' },
+                :class => "btn btn-mini btn-danger" %></td>
+     <% end %>
+
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New User', new_user_path,:class => "btn btn-mini btn-info" %>

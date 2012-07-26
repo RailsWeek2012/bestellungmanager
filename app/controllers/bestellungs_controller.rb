@@ -1,21 +1,28 @@
 class BestellungsController < ApplicationController
   load_and_authorize_resource
   before_filter :require_login!
-  before_filter :require_artikel!
+  before_filter :require_artikel!  ,:except => [:show, :destroy, :edit, :update]
+
   def index
     @bestellungs = current_artikel.bestellungs.all
 
-
+    session[:bestellung_id] = nil
   end
 
 
   def show
+    if(artikel_signed_in?)
     @bestellung = current_artikel.bestellungs.find(params[:id])
+    else
+      @bestellung = current_user.bestellungs.find(params[:id])
+    end
+
     session[:bestellung_id] = @bestellung.id
+
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @bestellung}
-      format.pdf { render :layout => false } # Add this line
+      format.pdf { render :layout => false }
     end
 
 
@@ -30,7 +37,11 @@ class BestellungsController < ApplicationController
 
 
   def edit
-    @bestellung = current_user.bestellungs.find(params[:id])
+    if(artikel_signed_in?)
+      @bestellung = current_artikel.bestellungs.find(params[:id])
+    else
+      @bestellung = current_user.bestellungs.find(params[:id])
+    end
   end
 
 
@@ -40,8 +51,7 @@ class BestellungsController < ApplicationController
 
       if @bestellung.save
          redirect_to @bestellung,
-                     notice: 'Bestellung was successfully created.'
-
+                     notice: 'Bestellung wurde erfolgreich erstellt.'
       else
          render action: "new"
 
@@ -51,12 +61,15 @@ class BestellungsController < ApplicationController
 
 
   def update
-    @bestellung = current_user.bestellungs.find(params[:id])
-
+      @bestellung = current_user.bestellungs.find(params[:id])
 
       if @bestellung.update_attributes(params[:bestellung])
-         redirect_to @bestellung, notice: 'Bestellung was successfully updated.'
-
+        if artikel_signed_in?
+          redirect_to @bestellung,
+                      notice: 'Bestellung wurde erfolgreich geaendert.'
+        else
+          redirect_to current_user
+        end
       else
          render action: "edit"
       end
@@ -70,9 +83,13 @@ class BestellungsController < ApplicationController
     @bestellung.auftrags.destroy_all
     @bestellung.destroy
 
-
-       redirect_to bestellungs_url
-
+    if(artikel_signed_in?)
+      redirect_to bestellungs_path,
+                  notice: 'Bestellung wurde erfolgreich geloescht.'
+    else
+      redirect_to current_user,
+                  notice: 'Bestellung wurde erfolgreich geloescht.'
+    end
     end
 
 end

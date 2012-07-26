@@ -34,9 +34,10 @@
     </tr>
 
     <% @artikel.bestellungs.each do |bestellung| %>
-
+        <tr>
           <td><%= bestellung.title %></td>
           <td><%= bestellung.termin %></td>
+        </tr>
         <% end %>
    </table>
 </div>

@@ -22,15 +22,16 @@
   <div id="footer">
     &copy 2012 |
     <% if user_signed_in? %>
-        <%= link_to "logout", logout_path, method: :delete ,:class => "btn btn-small btn-danger"%>  |
-        <td><%= link_to 'Show', current_user,:class => "btn btn-show btn-info" %></td>  |
+        <%= link_to "logout", signout_path, method: :delete ,:class => "btn btn-small btn-danger"%>  |
+        <td><%= link_to 'Profil', current_user,:class => "btn btn-show btn-info" %></td>  |
   <% else %>
-        <%= link_to "new user", new_user_path, :class => "btn btn-large "%>
+        <%= link_to "new user", "/auth/cas", :class => "btn btn-large "%>
     <% end %>
-    <% if admin_sign_in? %>
-    <td><%= link_to "User_index", users_path,:class => "btn btn-small btn-info"%></td> |
-     <td><%= link_to 'Artikel', artikels_path,:class => "btn btn-show btn-info" %></td>
-    <% end %>
+      <% if user_signed_in? %>
+    <td><%= link_to "Alle User", users_path,:class => "btn btn-small btn-info"%></td> |
+    <td><%= link_to 'Speisekarte', artikels_path,:class => "btn btn-show btn-info" %></td>
+        <% end %>
+
   </div>
 </div>
 </body>

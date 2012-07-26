@@ -1,32 +1,24 @@
 <%= form_for(@bestellung) do |f| %>
-  <% if @bestellung.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@bestellung.errors.count, "error") %> prohibited this bestellung from being saved:</h2>
-
-      <ul>
-      <% @bestellung.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
 
 
-  <div class="field">
-    <%= f.label :title %><br />
-    <%= f.text_field :title %>
-  </div>
+<div class="field">
+	<%= f.label :title %>
+	<br />
+	<%= f.text_field :title %>
+</div>
 
-  <div class="field">
-    <%= f.label :details %><br />
-    <%= f.text_area :details %>
-  </div>
+<div class="field">
+	<%= f.label :details %>
+	<br />
+	<%= f.text_area :details %>
+</div>
 
-  <div class="field">
-    <%= f.label :termin %><br />
-    <%= f.text_field :termin %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+<div class="field">
+	<%= f.label :termin %>
+	<br />
+	<%= f.text_field :termin%>
+</div>
+<div class="actions">
+	<%= f.submit %>
+</div>
 <% end %>

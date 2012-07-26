@@ -1,9 +1,6 @@
 Bestellungmanager::Application.routes.draw do
   get "pages/home"
 
-  get "login" => "sessions#new", as: "login"
-  post "sessions" => "sessions#create", as: "sessions"
-  delete "logout" => "sessions#destroy", as: "logout"
 
   resources :auftrags
 
@@ -14,6 +11,8 @@ Bestellungmanager::Application.routes.draw do
   resources :artikels
   get "artikels/:id/laden" => "artikels#laden", as: "laden_artikel"
 
+  match "/auth/:provider/callback" => "sessions#create" 
+  match "/signout" => "sessions#destroy", :as => :signout
 
 
    root :to => "pages#home"

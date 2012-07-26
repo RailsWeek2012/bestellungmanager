@@ -1,6 +1,7 @@
 class Ability
   include CanCan::Ability
 
+
   def initialize(user)
 
         user ||=User.new
@@ -9,7 +10,7 @@ class Ability
        else
 
          can :laden,  Artikel
-
+         can :index, User
          can :index,  Artikel
          can :index,  Auftrag
          can :index,  Bestellung
@@ -22,12 +23,12 @@ class Ability
          can :create, Artikel
          can :create, Auftrag
          can :create, Bestellung
-         can :create,  User
+         can :create, User
 
          can :new,   Artikel
          can :new,    Auftrag
          can :new,   Bestellung
-         can :new ,    User
+         can :new,   User
 
          can :edit, User.where("id=?",user.id)
          can :edit, Artikel.where("user_id=?",user.id)

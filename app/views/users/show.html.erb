@@ -4,17 +4,78 @@
   <b>name:</b>
   <%= @user.name %>
 </p>
-
 <p>
   <b>Vorname:</b>
   <%= @user.vorname %>
 </p>
-
 <p>
   <b>Email:</b>
   <%= @user.email %>
 </p>
+<p>
+<p>
+  <b>UID:</b>
+  <%=if  @user.authorization.present?; @user.authorization.uid end %>
+</p>
+  <b>Provider:</b>
+  <%=if  @user.authorization.present?; @user.authorization.provider end%>
+</p>
 
 <%= link_to 'Back', artikels_path,:class => "btn btn-small, btn-info" %>
 <%= link_to "Edit", edit_user_path(@user.id),:class => "btn btn-small" %>
+<hr>
+<div>
+  <h1>Liste meiner Bestellungen</h1>
 
+  <table class="table table-striped tablebordered table-condensed  ">
+    <thead>
+    </thead>
+    <tbody>
+    <tr>
+      <th>Title</th>
+      <th>Termin</th>
+    </tr>
+
+    <% @user.bestellungs.each do |bestellung| %>
+        <tr>
+
+          <td><%= bestellung.title %></td>
+          <td><%= bestellung.termin %></td>
+          <td><%= link_to 'Show', bestellung , :class => "btn btn-mini btn-info"%></td>
+          <% if can? :edit, bestellung %>
+              <td><%= link_to 'Edit', edit_bestellung_path(bestellung), :class => "btn btn-mini" %></td>
+              <td><%= link_to 'Destroy', bestellung, method: :delete, data: { confirm: 'Are you sure?' },
+                              :class => "btn btn-mini btn-danger" %></td>
+          <%end%>
+        </tr>
+    <% end %>
+    </table>
+</div>
+<hr>
+<div>
+  <h1>Liste meiner Auftraege</h1>
+
+  <table class="table table-striped tablebordered table-condensed ">
+    <tr>
+      <th>Name</th>
+      <th>Speise</th>
+      <th>Preis</th>
+      <th>Comment</th>
+    </tr>
+
+    <% @user.auftrags.each do |auftrag| %>
+        <tr>
+          <td><%= auftrag.name %></td>
+          <td><%= auftrag.speise %></td>
+          <td><%= auftrag.preis %></td>
+          <td><%= auftrag.comment %></td>
+          <td><%= link_to 'Show', auftrag, :class => "btn btn-mini btn-primary" %></td>
+          <% if can? :edit, auftrag %>
+              <td><%= link_to 'Edit', edit_auftrag_path(auftrag), :class => "btn btn-mini " %></td>
+              <td><%= link_to 'Destroy', auftrag, method: :delete, data: { confirm: 'Are you sure?' },
+                              :class => "btn btn-mini btn-danger" %></td>
+          <% end %>
+        </tr>
+    <% end %>
+  </table>
+</div>

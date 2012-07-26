@@ -2,8 +2,10 @@
 class ArtikelsController < ApplicationController
   before_filter :require_login!
   load_and_authorize_resource
+
   def index
     @artikels = Artikel.all
+    session[:artikel_id] = nil
    end
 
 
@@ -51,12 +53,9 @@ class ArtikelsController < ApplicationController
 
   def destroy
     @artikel = Artikel.find(params[:id])
-
-
+    @artikel.bestellungs.destroy_all
     FileUtils.rm_rf "public/uploads/artikel/image/#{@artikel.id}"
-
     @artikel.destroy
-
     redirect_to artikels_url
   end
 
