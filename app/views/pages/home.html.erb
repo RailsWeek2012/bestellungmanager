@@ -2,7 +2,7 @@
 <h1>Bestellung  Manager</h1>
 
 <% if user_signed_in? %>
-     <td><%= link_to "Logout", signout_path,:class => "btn btn-large" %></td>
+     <td><%= link_to "Profil", current_user,:class => "btn btn-large" %></td>
     <td><%= link_to "Speisekarte", artikels_path, :class => "btn btn-large btn-info" %></td>
 
 <% else %>
