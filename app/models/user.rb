@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   has_many :artikels
-  has_many :bestellungs , :dependent => :destroy
-  has_many :auftrags   ,   :dependent =>  :destroy
+  has_many :gruppes , :dependent => :destroy
+  has_many :bestellungs   ,   :dependent =>  :destroy
   has_one :authorization , :dependent => :destroy
 
   attr_accessible :name, :vorname, :email

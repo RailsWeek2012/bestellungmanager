@@ -1,0 +1,24 @@
+<%= form_for(@gruppe) do |f| %>
+
+
+<div class="field">
+	<%= f.label :title %>
+	<br />
+	<%= f.text_field :title %>
+</div>
+
+<div class="field">
+	<%= f.label :details %>
+	<br />
+	<%= f.text_area :details %>
+</div>
+
+<div class="field">
+	<%= f.label :termin %>
+	<br />
+	<%= f.text_field :termin%>
+</div>
+<div class="actions">
+	<%= f.submit "Bestellungsgruppe erstellen" %>
+</div>
+<% end %>

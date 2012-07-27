@@ -2,16 +2,16 @@
 
 one:
   [: MyString
-  title: MyString
-  ,: MyString
-  details: MyString
-  ,: MyString
-  termin: 
+  name: MyString
+  speise: MyString
+  preis: 1
+  comment: MyString
+  ]: MyString
 
 two:
   [: MyString
-  title: MyString
-  ,: MyString
-  details: MyString
-  ,: MyString
-  termin: 
+  name: MyString
+  speise: MyString
+  preis: 1
+  comment: MyString
+  ]: MyString

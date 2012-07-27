@@ -2,12 +2,13 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
 
   rescue_from CanCan::AccessDenied do |exception|
-    flash[:alert] = "Access denied."
+    flash[:alert] = "CanCan: Access denied."
     redirect_to root_path
   end
 
   rescue_from  ActiveRecord::RecordNotFound do |exception|
-
+    flash[:alert] = "Index nicht gefunden"
+    redirect_to root_path
 
   end
   def current_user
@@ -24,9 +25,9 @@ class ApplicationController < ActionController::Base
 
   end
 
-  def current_bestellung
-    if session[:bestellung_id]
-      @current_bestellung ||= Bestellung.find(session[:bestellung_id])
+  def current_gruppe
+    if session[:gruppe_id]
+      @current_gruppe ||= Gruppe.find(session[:gruppe_id])
     end
   end
 
@@ -38,8 +39,8 @@ class ApplicationController < ActionController::Base
     current_user.present?
   end
 
-  def sign_bestellung_in?
-    current_bestellung.present?
+  def sign_gruppe_in?
+    current_gruppe.present?
   end
 
   def require_login!
@@ -56,10 +57,10 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def require_bestellung!
-    unless  sign_bestellung_in?
+  def require_gruppe!
+    unless  sign_gruppe_in?
       redirect_to artikels_path,
-                  alert: "Bitte zuerst eine Bestellung waehlen!!"
+                  alert: "Bitte zuerst eine Gruppe waehlen!!"
     end
   end
 
@@ -72,10 +73,10 @@ class ApplicationController < ActionController::Base
   helper_method :admin_sign_in?
   helper_method :require_login!
   helper_method :require_artikel!
-  helper_method :require_bestellung!
+  helper_method :require_gruppe!
   helper_method :user_signed_in?
   helper_method :current_user
   helper_method :current_artikel
-  helper_method :current_bestellung
+  helper_method :current_gruppe
 
 end

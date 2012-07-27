@@ -60,11 +60,12 @@ class UsersController < ApplicationController
 
   def destroy
     @user = User.find(params[:id])
-    @user.auftrags.destroy_all
     @user.bestellungs.destroy_all
+    @user.gruppes.destroy_all
     @user.authorization.destroy
     @user.update_attribute(:email,nil)
     @user .update_attribute(:name, nil)
+    @user.update_attribute(:vorname, nil)
 
     @user.save
     unless admin_sign_in?

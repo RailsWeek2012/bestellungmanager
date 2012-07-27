@@ -6,7 +6,7 @@
 </p>
 <p>
   <h2>Speisekarte</h2>
-  <%=image_tag  @artikel.image.to_s ,:size => "550x500" %>
+  <%=image_tag  @artikel.image.to_s ,:size => "480x400" %>
   <%= link_to "Herunterladen",laden_artikel_path,:class => "btn btn-small btn-info"  %>
 
 </p>
@@ -20,8 +20,8 @@
 <%= link_to 'Edit', edit_artikel_path(@artikel),:class => "btn btn-small" %>
     <% end %>
 <div>
-  <h2>Bitte hier bestellen!!</h2>
-  <%= link_to "Bestellungsgruppe erstellen", bestellungs_path ,:class => "btn btn-small btn-success" %>
+  <h2>Bitte hier in Gruppe anmelden!!</h2>
+  <%= link_to "Bestellungsgruppe Auswaehlen", gruppes_path ,:class => "btn btn-small btn-success" %>
 
 </div>
 <div>
@@ -33,10 +33,10 @@
       <th>Termin</th>
     </tr>
 
-    <% @artikel.bestellungs.each do |bestellung| %>
+    <% @artikel.gruppes.each do |gruppe| %>
         <tr>
-          <td><%= bestellung.title %></td>
-          <td><%= bestellung.termin %></td>
+          <td><%= gruppe.title %></td>
+          <td><%= gruppe.termin %></td>
         </tr>
         <% end %>
    </table>

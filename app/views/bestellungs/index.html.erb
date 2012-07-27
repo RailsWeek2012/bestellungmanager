@@ -1,31 +1,31 @@
-<h1>Liste der Bestellungsgruppe</h1>
+<h1>Liste der Bestellungen</h1>
 
-<table class="table table-striped tablebordered table-condensed  ">
-  <thead>
-  </thead>
-  <tbody>
+<table class="table table-striped tablebordered table-condensed ">
   <tr>
-    <th>Title</th>
-    <th>Termin</th>
+    <th>Name</th>
+    <th>Speise</th>
+    <th>Preis</th>
+    <th>Comment</th>
   </tr>
 
 <% @bestellungs.each do |bestellung| %>
   <tr>
-
-    <td><%= bestellung.title %></td>
-    <td><%= bestellung.termin %></td>
-    <td><%= link_to 'Show', bestellung , :class => "btn btn-mini btn-info"%></td>
+    <td><%= bestellung.name %></td>
+    <td><%= bestellung.speise %></td>
+    <td><%= bestellung.preis %></td>
+    <td><%= bestellung.comment %></td>
+    <td><%= link_to 'Show', bestellung, :class => "btn btn-mini btn-primary" %></td>
     <% if can? :edit, bestellung %>
-    <td><%= link_to 'Edit', edit_bestellung_path(bestellung), :class => "btn btn-mini" %></td>
+    <td><%= link_to 'Edit', edit_bestellung_path(bestellung), :class => "btn btn-mini " %></td>
     <td><%= link_to 'Destroy', bestellung, method: :delete, data: { confirm: 'Are you sure?' },
                     :class => "btn btn-mini btn-danger" %></td>
-        <%end%>
+        <% end %>
   </tr>
 <% end %>
 </table>
-<%= link_to "zur Speisekarte",current_artikel, :class => "btn btn-small" %> |
-<td><%= link_to 'Neue Bestellunggruppe', new_bestellung_path, :class => "btn btn-small btn-primary" %></td>
 
-
+<br />
+<%= link_to "Zurueck zur Gruppe", current_gruppe, :class => "btn btn-small " %>
+<td><%= link_to 'Neue Bestellung', new_bestellung_path , :class => "btn btn-small btn-primary"%></td>
 
 

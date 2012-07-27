@@ -11,10 +11,6 @@ class SessionsController < ApplicationController
       redirect_to root_path   :notice => "Sie sind eingelogt"
     else
       session[:auth]= auth_hash
-   # user = User.new
-    #user.authorizations.new :provider => auth_hash["provider"], :uid => auth_hash["uid"]
-   # user.save
-    #session[:user_id]= user
      redirect_to new_user_path,  :notice => "Bitte Formular ausfuellen"
     end
   end

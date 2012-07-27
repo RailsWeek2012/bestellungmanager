@@ -1,24 +1,27 @@
+
+<div id="header">
+  <% if flash[:alert] %>
+      <p id="alert">
+        <%= flash[:alert] %>
+      </p>
+  <% end %>
+
+</div>
 <%= form_for(@bestellung) do |f| %>
+  <div class="field">
+    <%= f.label "SpeiseNr/Name" %><br />
+    <%= f.text_field :speise %>
+  </div>
+  <div class="field">
+    <%= f.label :preis %><br />
+    <%= f.number_field :preis %>
+  </div>
+  <div class="field">
+    <%= f.label :comment %><br />
+    <%= f.text_area :comment %>
+  </div>
 
-
-<div class="field">
-	<%= f.label :title %>
-	<br />
-	<%= f.text_field :title %>
-</div>
-
-<div class="field">
-	<%= f.label :details %>
-	<br />
-	<%= f.text_area :details %>
-</div>
-
-<div class="field">
-	<%= f.label :termin %>
-	<br />
-	<%= f.text_field :termin%>
-</div>
-<div class="actions">
-	<%= f.submit %>
-</div>
+  <div class="actions">
+    <%= f.submit "Bestellung erstellen"%>
+  </div>
 <% end %>

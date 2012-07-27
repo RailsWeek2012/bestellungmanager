@@ -53,7 +53,7 @@ class ArtikelsController < ApplicationController
 
   def destroy
     @artikel = Artikel.find(params[:id])
-    @artikel.bestellungs.destroy_all
+    @artikel.gruppes.destroy_all
     FileUtils.rm_rf "public/uploads/artikel/image/#{@artikel.id}"
     @artikel.destroy
     redirect_to artikels_url

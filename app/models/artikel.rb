@@ -1,6 +1,6 @@
 class Artikel < ActiveRecord::Base
   belongs_to :user
-  has_many :bestellungs
+  has_many :gruppes   , :dependent => :destroy
 
   attr_accessible :comment, :title, :image
 

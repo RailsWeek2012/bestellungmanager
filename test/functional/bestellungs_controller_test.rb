@@ -2,7 +2,7 @@ require 'test_helper'
 
 class BestellungsControllerTest < ActionController::TestCase
   setup do
-    @bestellung = bestellungs(:one)
+    @bestellung = auftrags(:one)
   end
 
   test "should get index" do
@@ -18,10 +18,10 @@ class BestellungsControllerTest < ActionController::TestCase
 
   test "should create bestellung" do
     assert_difference('Bestellung.count') do
-      post :create, bestellung: { ,: @bestellung.,, ,: @bestellung.,, [: @bestellung.[, details: @bestellung.details, termin: @bestellung.termin, title: @bestellung.title }
+      post :create, bestellung: { [: @bestellung.[, ]: @bestellung.], comment: @bestellung.comment, name: @bestellung.name, preis: @bestellung.preis, speise: @bestellung.speise }
     end
 
-    assert_redirected_to bestellung_path(assigns(:bestellung))
+    assert_redirected_to auftrag_path(assigns(:bestellung))
   end
 
   test "should show bestellung" do
@@ -35,8 +35,8 @@ class BestellungsControllerTest < ActionController::TestCase
   end
 
   test "should update bestellung" do
-    put :update, id: @bestellung, bestellung: { ,: @bestellung.,, ,: @bestellung.,, [: @bestellung.[, details: @bestellung.details, termin: @bestellung.termin, title: @bestellung.title }
-    assert_redirected_to bestellung_path(assigns(:bestellung))
+    put :update, id: @bestellung, bestellung: { [: @bestellung.[, ]: @bestellung.], comment: @bestellung.comment, name: @bestellung.name, preis: @bestellung.preis, speise: @bestellung.speise }
+    assert_redirected_to auftrag_path(assigns(:bestellung))
   end
 
   test "should destroy bestellung" do
@@ -44,6 +44,6 @@ class BestellungsControllerTest < ActionController::TestCase
       delete :destroy, id: @bestellung
     end
 
-    assert_redirected_to bestellungs_path
+    assert_redirected_to auftrags_path
   end
 end

@@ -25,7 +25,7 @@
 <%= link_to "Edit", edit_user_path(@user.id),:class => "btn btn-small" %>
 <hr>
 <div>
-  <h1>Liste meiner Bestellungsgruppen</h1>
+  <h2>Liste meiner Gruppen</h2>
 
   <table class="table table-striped tablebordered table-condensed  ">
     <thead>
@@ -36,15 +36,15 @@
       <th>Termin</th>
     </tr>
 
-    <% @user.bestellungs.each do |bestellung| %>
+    <% @user.gruppes.each do |gruppe| %>
         <tr>
 
-          <td><%= bestellung.title %></td>
-          <td><%= bestellung.termin %></td>
-          <td><%= link_to 'Show', bestellung , :class => "btn btn-mini btn-info"%></td>
-          <% if can? :edit, bestellung %>
-              <td><%= link_to 'Edit', edit_bestellung_path(bestellung), :class => "btn btn-mini" %></td>
-              <td><%= link_to 'Destroy', bestellung, method: :delete, data: { confirm: 'Are you sure?' },
+          <td><%= gruppe.title %></td>
+          <td><%= gruppe.termin %></td>
+          <td><%= link_to 'Show', gruppe , :class => "btn btn-mini btn-info"%></td>
+          <% if can? :edit, gruppe %>
+              <td><%= link_to 'Edit', edit_bestellung_path(gruppe), :class => "btn btn-mini" %></td>
+              <td><%= link_to 'Destroy', gruppe, method: :delete, data: { confirm: 'Are you sure?' },
                               :class => "btn btn-mini btn-danger" %></td>
           <%end%>
         </tr>
@@ -53,7 +53,7 @@
 </div>
 <hr>
 <div>
-  <h1>Liste meiner Auftragen</h1>
+  <h2>Liste meiner Bestellungen</h2>
 
   <table class="table table-striped tablebordered table-condensed ">
     <tr>
@@ -63,16 +63,16 @@
       <th>Comment</th>
     </tr>
 
-    <% @user.auftrags.each do |auftrag| %>
+    <% @user.bestellungs.each do |bestellung| %>
         <tr>
-          <td><%= auftrag.name %></td>
-          <td><%= auftrag.speise %></td>
-          <td><%= auftrag.preis %></td>
-          <td><%= auftrag.comment %></td>
-          <td><%= link_to 'Show', auftrag, :class => "btn btn-mini btn-primary" %></td>
-          <% if can? :edit, auftrag %>
-              <td><%= link_to 'Edit', edit_auftrag_path(auftrag), :class => "btn btn-mini " %></td>
-              <td><%= link_to 'Destroy', auftrag, method: :delete, data: { confirm: 'Are you sure?' },
+          <td><%= bestellung.name %></td>
+          <td><%= bestellung.speise %></td>
+          <td><%= bestellung.preis %></td>
+          <td><%= bestellung.comment %></td>
+          <td><%= link_to 'Show', bestellung, :class => "btn btn-mini btn-primary" %></td>
+          <% if can? :edit, bestellung %>
+              <td><%= link_to 'Edit', edit_bestellung_path(bestellung), :class => "btn btn-mini " %></td>
+              <td><%= link_to 'Destroy', bestellung, method: :delete, data: { confirm: 'Are you sure?' },
                               :class => "btn btn-mini btn-danger" %></td>
           <% end %>
         </tr>

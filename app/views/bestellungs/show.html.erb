@@ -1,47 +1,29 @@
-<p>
-  <b>Title:</b>
-  <%= @bestellung.title %>
-</p>
+  <p>
+    <b>Name</b>
+    <%= @bestellung.name %>
+  </p>
 
-<p>
-  <b>Details:</b>
-  <%= @bestellung.details %>
-</p>
+  <p>
+    <b>Speise</b>
+    <%= @bestellung.speise %>
+  </p>
 
-<p>
-  <b>Termin:</b>
-  <%= @bestellung.termin %>
-</p>
- <p>
-   <b>Summe:</b>
-   <%= @bestellung.auftrags .sum("preis")%>
+  <p>
+    <b>Preis</b>
+    <%= @bestellung.preis %>
+  </p>
 
- </p>
-<h2>Laufende Bestellungen für diese Gruppe</h2>
-<div>
-  <table  class="table table-striped tablebordered table-condensed  ">
-    <tr>
-      <th>Name</th>
-      <th>Speise</th>
-      <th>Preis</th>
-      <th>Comment</th>
-    </tr>
+  <p>
+    <b>Comment</b>
+    <%= @bestellung.comment %>
+  </p>
+  <p>
+    <b>Erstellt am:</b>
+    <%= @bestellung.updated_at.to_date %>
+  </p>
 
-    <%@bestellung.auftrags.each do |auftrag| %>
-        <tr>
-          <td><%= auftrag.name %></td>
-          <td><%= auftrag.speise %></td>
-          <td><%= auftrag.preis %></td>
-          <td><%= auftrag.comment %></td>
-        </tr>
-        <% end %>
-     </table>
-</div>
-<td><%= link_to 'zur Speisekarte', bestellungs_path,:class => "btn btn-small" %></td>
 
-<%= link_to "Bestellung Ausdruecke(PDF)" , bestellung_path(@bestellung, :format => 'pdf') ,:class => "btn btn-small btn-success"%>
-
-<div>
-    <h2>Bitte Speise Hier eingeben!!</h2>
-    <%= link_to "Speise Aufnehmen", auftrags_path,:class => "btn btn-small btn-action" %>
-</div>
+  <%= link_to 'zur Gruppe',  bestellungs_path, :class => "btn btn-small " %>
+     <% if can? :edit, @bestellung %>
+    <%= link_to 'Edit', edit_bestellung_path(@bestellung), :class => "btn btn-small btn-info " %>
+  <%end%>

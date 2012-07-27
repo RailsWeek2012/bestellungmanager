@@ -22,17 +22,6 @@ ActiveRecord::Schema.define(:version => 20120725142027) do
     t.integer  "user_id"
   end
 
-  create_table "auftrags", :force => true do |t|
-    t.string   "name"
-    t.string   "speise"
-    t.decimal  "preis"
-    t.text     "comment"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
-    t.integer  "user_id"
-    t.integer  "bestellung_id"
-  end
-
   create_table "authorizations", :force => true do |t|
     t.string   "provider"
     t.string   "uid"
@@ -42,6 +31,17 @@ ActiveRecord::Schema.define(:version => 20120725142027) do
   end
 
   create_table "bestellungs", :force => true do |t|
+    t.string   "name"
+    t.string   "speise"
+    t.decimal  "preis"
+    t.text     "comment"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.integer  "user_id"
+    t.integer  "gruppe_id"
+  end
+
+  create_table "gruppes", :force => true do |t|
     t.string   "title"
     t.text     "details"
     t.string   "termin"

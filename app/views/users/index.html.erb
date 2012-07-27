@@ -34,7 +34,7 @@
     <td><%= if  user.authorization.present? ; user.authorization.provider end %></td>
         <% end %>
 
-    <% if can? :edit, user %>
+    <% if user.name != nil %>
     <td><%= link_to 'Show', user ,:class => "btn btn-mini btn-info"%></td>
         <% end %>
 

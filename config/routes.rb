@@ -2,9 +2,9 @@ Bestellungmanager::Application.routes.draw do
   get "pages/home"
 
 
-  resources :auftrags
-
   resources :bestellungs
+
+  resources :gruppes
 
   resources :users
 
