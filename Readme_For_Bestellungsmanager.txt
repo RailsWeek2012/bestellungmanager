@@ -13,8 +13,8 @@ Verwendete Ressourcen:
 
   http://twitter.github.com/bootstrap/components.html
   https://github.com/jnicklas/carrierwave
-  https://github.com/prawnpdf/prawn.git
-  https://github.com/prior/prawnto.git
-  https://github.com/ryanb/cancan.git
-  https://github.com/dlindahl/omniauth-cas.git
+  https://github.com/prawnpdf/prawn
+  https://github.com/prior/prawnto
+  https://github.com/ryanb/cancan
+  https://github.com/dlindahl/omniauth-cas
 
